@@ -1,0 +1,227 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    /* 라이트 모드 색상 */
+    /* 텍스트 색상 */
+    --text-primary: #000;
+    /* 배경 색상 */
+    --bg-primary: #fff;
+    --bg-hover: #0C10140D;
+    --bg-shadow: rgba(0, 0, 0, 0.18);
+    --bg-divider: rgba(200, 200, 200, 0.35);
+    --bg-dropdown: rgba(248, 249, 249, 1);
+}
+
+
+/* 사이드바 */
+
+.sidebar {
+    /* 우측 메인 컨텐츠 영역 침범하지 않게 position fix 및 z-index 할당 */
+    position: fixed;
+    z-index: 100;
+    /* 버튼 방향 세로로 설정 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 72px;
+    max-height: 100%;
+    height: 100vh;
+    background: var(--bg-primary);
+    padding: 8px 12px 20px 12px;
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: none;
+}
+
+.sidebar:hover {
+    width: 238px;
+}
+
+
+/* 사이드바 호버 시 텍스트 표시 */
+
+.sidebar:hover .btn-text {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+
+/* 드롭다운 메뉴 열려있으면 사이드바 확장 유지 */
+
+.sidebar.dropdown-open {
+    width: 238px;
+}
+
+.sidebar.dropdown-open .btn-text {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* 사이드바 최상단 아이콘 */
+
+.main-btn {
+    background: var(--bg-primary);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 10px 7px 10px;
+    cursor: pointer;
+    margin: 6px 2px;
+}
+
+.main-btn:hover {
+    background: var(--bg-hover);
+}
+
+
+/* 사이드바 버튼 컨테이너 */
+
+.btn-container {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    margin: auto 0;
+}
+
+.sidebar:hover .btn-container,
+.sidebar:hover .sidebar-footer {
+    width: 100%;
+}
+
+
+/* 사이드바 버튼 */
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    background: var(--bg-primary);
+    padding: 12px;
+    margin: 4px 0;
+}
+
+.action-btn:hover {
+    background: var(--bg-hover);
+}
+
+
+/* 활성탭 아이콘 활성화 및 텍스트 볼드체 적용 */
+
+.icon-filled {
+    display: none;
+}
+
+.action-btn.active .icon-outline {
+    display: none;
+}
+
+.action-btn.active .icon-filled {
+    display: block;
+}
+
+.action-btn.active .profile-img {
+    border: 2px solid var(--text-primary);
+}
+
+.action-btn.active .btn-text {
+    font-weight: bold;
+}
+
+.btn-text {
+    font-size: 16px;
+    opacity: 0;
+    transform: translateX(-10px);
+    white-space: nowrap;
+    transition: none;
+}
+
+.profile-img {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--bg-hover);
+    border-radius: 50%;
+    box-sizing: content-box;
+    margin-left: -2px;
+}
+
+
+/* 사이드바 헤더, 푸터 */
+
+.sidebar-header,
+.sidebar-footer {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}
+
+
+/* 드롭다운 메뉴 */
+
+.dropdown-container {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: fixed;
+    left: 0;
+    min-width: 250px;
+    background: var(--bg-dropdown);
+    border-radius: 12px;
+    box-shadow: var(--bg-shadow) 0px 8px 48px 0px;
+    padding: 8px;
+    display: none;
+    flex-direction: column;
+    z-index: 200;
+}
+
+.dropdown-menu.active {
+    display: flex;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--text-primary);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.dropdown-item:hover {
+    background: var(--bg-hover);
+}
+
+.dropdown-icon {
+    padding-right: 12px;
+}
+
+.divider {
+    height: 2px;
+    background: var(--bg-divider);
+    margin: 8px -8px;
+}
+
+
+/* 반응형 - 화면 크기 작아지면 사이드바 제거 */
+
+@media (max-width: 767px) {
+    .sidebar {
+        display: none;
+    }
+}
