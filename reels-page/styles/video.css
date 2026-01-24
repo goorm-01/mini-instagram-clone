@@ -1,0 +1,11 @@
+.reels-card {
+  height: 750px;
+  width: 421.875px;
+  display: flex;
+  justify-content: center;
+}
+
+video {
+  height: 750px;
+  width: 421.875px;
+}
