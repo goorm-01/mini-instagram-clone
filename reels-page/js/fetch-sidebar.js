@@ -17,7 +17,7 @@
       .then((res) => res.text())
       .then((html) => {
         /* fetch로 가져온 HTML을 DOMParser를 사용해
-         aside.sidebar만 추출하여 삽입 */
+         aside .sidebar만 추출하여 삽입 */
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, "text/html");
         const sidebarElement = doc.querySelector("aside.sidebar");

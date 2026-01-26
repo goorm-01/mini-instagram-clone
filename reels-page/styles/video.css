@@ -1,11 +1,154 @@
-.reels-card {
-  height: 750px;
-  width: 421.875px;
+#reels {
   display: flex;
   justify-content: center;
 }
-
-video {
+.reels-card {
   height: 750px;
-  width: 421.875px;
+  width: 450px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 420.75px;
+  height: 748px;
+  cursor: pointer;
+}
+
+.reels-video {
+  width: 420.75px;
+  height: 748px;
+  object-fit: cover;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-radius: 2.5%;
+}
+
+.play-btn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  height: 75px;
+  width: 75px;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: 0;
+  border-radius: 50%;
+}
+
+.play-btn:hover {
+  height: 78px;
+  width: 78px;
+}
+
+.hidden {
+  display: none;
+}
+
+.mute-btn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  width: 32px;
+  top: 24px;
+  right: 8px;
+  background-color: #dbdbdb33;
+  border: 0;
+  color: white;
+  border-radius: 50%;
+}
+
+.mute-btn:hover {
+  background: #dbdbdb38;
+}
+
+.info-area {
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+  color: white;
+}
+
+.channel-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+
+.channel-img {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+}
+
+.channel-name {
+  font-weight: 600;
+}
+
+.follow-btn {
+  font-weight: 600;
+  height: 32px;
+  width: auto;
+  border-radius: 8px;
+  color: white;
+  background: transparent;
+  margin-left: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.bgm {
+  display: flex;
+  justify-content: flex-start;
+  gap: 4px;
+  align-items: center;
+  background: #dbdbdb14;
+  border: 1px solid #ffffff0a;
+  border-radius: 20px;
+  height: 24px;
+  width: 300px;
+  text-align: left;
+}
+
+.bgm-img {
+  margin-left: 12px;
+}
+
+.side-actions {
+  width: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  margin-inline-start: 20px;
+  margin-bottom: 4px;
+}
+
+.side-actions img {
+  height: 24px;
+  width: 24px;
+}
+
+.side-action-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  background: var(--bg-primary);
 }
