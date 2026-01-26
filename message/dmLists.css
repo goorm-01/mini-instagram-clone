@@ -50,17 +50,18 @@ body {
 }
 
 /* 채팅방 목록 전체 섹션 */
-.rooms {
+.roomsLayout {
     border-right: 1px solid var(--line);
     background: var(--panel);
     display: flex;
     flex-direction: column;
     min-width: 0;
+    padding: 0 20px 0 20px;
 }
 
-/* 채팅방 상단 */
+/* dm바 상단 */
 .rooms__header {
-    padding: 14px 14px 10px;
+    padding: 14px 0 10px;
     border-bottom: 1px solid var(--line);
 }
 
@@ -71,6 +72,7 @@ body {
     justify-content: space-between;
 }
 
+/* 현재 게정 사용자 */
 .rooms__user {
     border: 0;
     background: transparent;
@@ -84,17 +86,14 @@ body {
     padding: 8px 10px;
     border-radius: 10px;
 }
-
 .rooms__user:hover {
     background: var(--hover);
 }
-
 .rooms__user h2{
     margin: 0;
 }
 
-
-
+/* 새로운 dm방 버튼 */
 .rooms__new {
     width: 40px;
     height: 40px;
@@ -105,7 +104,6 @@ body {
     place-items: center;
     cursor: pointer;
 }
-
 .rooms__new:hover {
     background: var(--hover);
 }
@@ -115,7 +113,6 @@ body {
     height: 18px;
     opacity: .9;
 }
-
 /* 채팅방 검색창 */
 .rooms__search {
     width: 100%;
@@ -154,6 +151,14 @@ body {
 }
 
 /* 채팅목록 */
+.rooms__title{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px 0 20px;
+}
+
 .rooms__list {
     list-style: none;
     margin: 0;

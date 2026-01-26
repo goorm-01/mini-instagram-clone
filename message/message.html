@@ -15,7 +15,7 @@
   </div>
 
   <!--dm 목록-->
-  <section class="rooms">
+  <section class="roomsLayout">
     <header class="rooms__header">
       <div class="rooms__title-row">
         <!--사용자 계정 이름-->
@@ -63,13 +63,14 @@
         <input type="search" placeholder="검색" />
         </label>
       </div>
-
-      <div class="">
-
-      </div>
     </header>
 
-    <ul class="rooms__list">
+    <div class="rooms">
+      <div class="rooms__title">
+        <div>메세지</div>
+        <div>요청</div>
+      </div>
+      <ul class="rooms__list">
       <!-- item -->
       <li class="room is-selected">
         <img class="room__avatar" src="../assets/images/avatar.png" alt="" />
@@ -109,6 +110,7 @@
         <span class="room__unread"></span>
       </li>
     </ul>
+    </div>
   </section>
 
   <!--dm 화면-->
