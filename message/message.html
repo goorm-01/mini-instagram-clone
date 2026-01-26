@@ -1,0 +1,135 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instagram • 메세지</title>
+
+  <link rel="stylesheet" href="../sidebar/sidebar.css" />
+  <link rel="stylesheet" href="dmLists.css" />
+</head>
+
+<body>
+  <!--사이드바-->
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content"></main>
+  </div>
+
+  <!--dm 목록-->
+  <section class="rooms">
+    <header class="rooms__header">
+      <div class="rooms__title-row">
+        <!--사용자 계정 이름-->
+        <button class="rooms__user">
+          <div>
+            <h2>
+              <span class="rooms__username">username</span>
+            </h2>
+          </div>
+          <div>
+            <svg aria-label="아래쪽 V자형 아이콘" class="user_change" fill="currentColor" height="12" role="img"
+              viewBox="0 0 24 24" width="12">
+              <title>아래쪽 V자형 아이콘</title>
+              <path
+                d="M12 17.502a1 1 0 0 1-.707-.293l-9-9.004a1 1 0 0 1 1.414-1.414L12 15.087l8.293-8.296a1 1 0 0 1 1.414 1.414l-9 9.004a1 1 0 0 1-.707.293Z" />
+            </svg>
+          </div>
+        </button>
+
+        <!--새 dm방 추가-->
+        <button class="rooms__new" aria-label="New message">
+          <svg aria-label="새로운 메시지" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+            <title>새로운 메시지</title>
+            <path d="M12.202 3.203H5.25a3 3 0 0 0-3 3V18.75a3 3 0 0 0 3 3h12.547a3 3 0 0 0 3-3v-6.952" fill="none"
+              stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+            <path
+              d="M10.002 17.226H6.774v-3.228L18.607 2.165a1.417 1.417 0 0 1 2.004 0l1.224 1.225a1.417 1.417 0 0 1 0 2.004Z"
+              fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+            <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              x1="16.848" x2="20.076" y1="3.924" y2="7.153" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="rooms__search">
+        <label>
+          <svg aria-label="검색" class="x1lliihq x1n2onr6 x1cp0k07" fill="currentColor" height="16" role="img"
+          viewBox="0 0 24 24" width="16">
+          <title>검색</title>
+          <path d="M19 10.5A8.5 8.5 0 1 1 10.5 2a8.5 8.5 0 0 1 8.5 8.5Z" fill="none" stroke="currentColor"
+            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+          <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            x1="16.511" x2="22" y1="16.511" y2="22" />
+        </svg>
+        <input type="search" placeholder="검색" />
+        </label>
+      </div>
+
+      <div class="">
+
+      </div>
+    </header>
+
+    <ul class="rooms__list">
+      <!-- item -->
+      <li class="room is-selected">
+        <img class="room__avatar" src="../assets/images/avatar.png" alt="" />
+        <div class="room__meta">
+          <div class="room__name-row">
+            <span class="room__name">백준호님</span>
+            <span class="room__dot">•</span>
+            <span class="room__time">20분</span>
+          </div>
+          <div class="room__preview">첨부 파일을 보냈습니다.</div>
+        </div>
+      </li>
+
+      <li class="room">
+        <img class="room__avatar" src="../assets/images/avatar.png" alt="" />
+        <div class="room__meta">
+          <div class="room__name-row">
+            <span class="room__name">나</span>
+            <span class="room__dot">•</span>
+            <span class="room__time">2시간</span>
+          </div>
+          <div class="room__preview">첨부 파일을 보냈습니다.</div>
+        </div>
+        <span class="room__unread"></span>
+      </li>
+
+      <li class="room">
+        <img class="room__avatar" src="../assets/images/avatar.png" alt="" />
+        <div class="room__meta">
+          <div class="room__name-row">
+            <span class="room__name">mangkyungg님</span>
+            <span class="room__dot">•</span>
+            <span class="room__time">1시간</span>
+          </div>
+          <div class="room__preview">자 · 1시간</div>
+        </div>
+        <span class="room__unread"></span>
+      </li>
+    </ul>
+  </section>
+
+  <!--dm 화면-->
+  <main class="main">
+    <div class="empty">
+      <div class="empty__icon">
+        <img src="assets/icons/send-outline.svg" alt="" />
+      </div>
+      <h2 class="empty__title">내 메시지</h2>
+      <p class="empty__desc">친구나 그룹에 비공개 사진과 메시지를 보내보세요</p>
+      <button class="empty__cta" type="button">메시지 보내기</button>
+    </div>
+  </main>
+
+  <script>
+    fetch("../sidebar/sidebar.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("sidebar").innerHTML = html;
+      });
+  </script>
+
+  <script src="../sidebar/sidebar.js"></script>
+</body>
