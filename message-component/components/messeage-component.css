@@ -1,0 +1,542 @@
+:root {
+  --shadow-2: 0 4px 13px rgba(0, 0, 0, 0.25);
+  --ig-banner-background: 255, 255, 255;
+}
+
+/* =============== 작은 메시지 컴포넌트 (기본 상태) =============== */
+.message-component {
+  position: fixed;
+  bottom: 4%;
+  right: 2.5%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 16.5%;
+  padding: 18px 28px;
+  background-color: #ffffff;
+  box-shadow: var(--shadow-2);
+  border-radius: 50px;
+  z-index: 9998;
+}
+
+.message-component:hover {
+  background-color: #F3F5F7;
+  cursor: pointer;
+}
+
+.message-component svg {
+  margin: 5px 0px 0px 0px;
+}
+
+.message-component.active {
+  display: none;
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+}
+
+.message-title {
+  margin: 0 10px;
+  font-size: 19.04px;
+  font-weight: 600;
+  color: #0c1014;
+}
+
+.profile-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+/* =============== 확장된 메시지 창 =============== */
+.message-expanded {
+  position: fixed;
+  width: 430px;
+  height: 600px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  display: none;
+}
+
+.message-expanded.active {
+  display: block;
+}
+
+
+/* =============== 메시지 목록 화면 =============== */
+.message-list-view {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-list-view.hidden {
+  display: none;  /* 완전히 숨김 */
+}
+
+
+/* =============== 확장된 메시지 창 - 헤더 =============== */
+.expanded-title-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1.5px solid #dbdfe4;
+}
+
+.expanded-title {
+  font-size: 19.04px;
+  font-weight: 600;
+  color: #0c1014;
+}
+
+.expanded-title-right-icon {
+  display: flex;
+  gap: 10px;
+}
+
+.expanded-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.expanded-btn:hover {
+  transform: scale(1.1);
+}
+
+
+/* =============== 확장된 메시지 창 - 메시지 목록 =============== */
+.message-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.message-items {
+  display: flex;
+  align-items: center;
+  padding: 15px 25px;
+}
+
+.message-items:hover {
+  background-color: #F3F5F7;
+  cursor: pointer;
+}
+
+.expanded-profile-img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.expanded-profile-text {
+  display: flex;
+  flex-direction: column;
+  margin: 0 12px;
+}
+
+.expanded-profile-text-top {
+  color: #0c1014;
+  font-size: 20px;
+}
+
+.expanded-profile-text-bottom {
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+  color: #6a717a;
+  gap: 5px;
+}
+
+
+/* =============== 확장된 메시지 창 (새 메시지 버튼) =============== */
+.message-footer {
+  position: relative;
+  padding: 16px;
+}
+
+.expanded-new-message {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 70px;
+  height: 70px;
+  background: #ffffff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: var(--shadow-2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  cursor: pointer;
+}
+
+.expanded-new-message:hover {
+  background: #F3F5F7;
+}
+
+
+/* =============== 메시지 검색 화면 =============== */
+.message-search-view {
+  width: 100%;
+  height: 100%;
+  display: none;  /* 기본 숨김 */
+  flex-direction: column;
+}
+
+.message-search-view.active {
+  display: flex;  /* 보이기 */
+}
+
+/* 검색 화면 헤더 */
+.search-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1.5px solid #dbdfe4;
+}
+
+.search-header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-back-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.search-header h3 {
+  margin: 0;
+  font-size: 19.04px;
+  font-weight: 600;
+  color: #0c1014;
+}
+
+/* 검색 내용 영역 */
+.search-content {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 20px;
+  gap: 15px;
+  overflow-y: auto;
+  border-bottom: 1.5px solid #dbdfe4;
+}
+
+.search-header-text {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 17px;
+}
+
+.search-recommend {
+  padding: 15px 20px;
+}
+
+.search-recommend-text {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.recommend-profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+}
+
+.recommend-profile-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.recommend-profile-left-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-recommend-text {
+  font-size: 18px;
+}
+
+.search-recommend-text-bottom {
+  color: #6a717a;
+}
+
+.recommend-checkbox {
+  width: 28px;
+  height: 28px;
+  border: 1.3px solid #6A717A;
+  border-radius: 50%;
+}
+
+/* =============== 추천 프로필 클릭 효과 =============== */
+
+.recommend-profile {
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.recommend-profile:hover {
+  background: #fafafa;
+}
+
+/* 추천 프로필 목록 영역 */
+.recommend-profile-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* 체크 아이콘 (기본 숨김) */
+.check-icon {
+  display: none;
+  color: white;
+}
+
+/* 선택된 상태 */
+.recommend-profile.selected .recommend-checkbox {
+  background: #0C1014;
+  border-color: #0C1014;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recommend-profile.selected .check-icon {
+  display: block;  /* 체크 아이콘 표시 */
+}
+
+/* =============== 검색창 - 선택된 사용자 태그 =============== */
+
+.search-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 10px 20px;
+  gap: 8px;
+  border-bottom: 1.5px solid #dbdfe4;
+}
+
+/* 태그가 하나라도 있으면 세로로 변경 */
+.search-content.has-tags {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.search-content-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0c1014;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+/* 태그 + input wrapper */
+.search-input-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+/* 태그가 있을 때 wrapper 스타일 */
+.search-content.has-tags .search-input-wrapper {
+  width: calc(100% - 93px);
+  margin-left: 93px;
+  margin-top: -28px;
+}
+
+.selected-users-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* 선택된 사용자 태그 */
+.selected-user-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #e0f1ff;
+  color: #3143e3;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.selected-user-tag span {
+  line-height: 1;
+}
+
+/* 태그 X 버튼 */
+.remove-user-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.remove-user-btn:hover {
+  background: rgba(49, 67, 227, 0.15);
+}
+
+.remove-icon {
+  color: #3143e3;
+}
+
+/* 검색 input */
+.search-input {
+  flex: 1;
+  min-width: 100px;
+  border: none;
+  outline: none;
+  font-size: 17px;
+  padding: 4px 0;
+}
+
+/* 태그가 있을 때 input 전체 너비 */
+.search-content.has-tags .search-input {
+  width: 100%;
+}
+
+/* =============== 추천 프로필 =============== */
+
+.recommend-profile {
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.recommend-profile:hover {
+  background: #fafafa;
+}
+
+/* 체크 아이콘 기본 숨김 */
+.check-icon {
+  display: none;
+  color: white;
+}
+
+/* 선택된 상태 */
+.recommend-profile.selected .recommend-checkbox {
+  background: #0C1014;
+  border-color: #0C1014;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recommend-profile.selected .check-icon {
+  display: block;
+}
+
+/* Chat 버튼 영역 (하단 고정) */
+.chat {
+  border-top: 1.3px solid #dbdfe4;
+}
+
+.chat-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 0;
+  background-color: #b8ceff;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: not-allowed;
+  border-radius: 8px;
+  margin: 16px;
+  transition: background 0.2s;
+}
+
+/* Chat 버튼 활성화 */
+.chat-btn.active {
+  background-color: #4a5df9;
+  cursor: pointer;
+}
+
+/* =============== 반응형 =============== */
+
+/* 태블릿 (1024px 이하) */
+@media (max-width: 1024px) {
+  .message-component {
+    width: 70px;
+    height: 70px;
+    padding: 0;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .message-title {
+    display: none;
+  }
+
+  .profile-img {
+    display: none;
+  }
+
+  .title-container {
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* 모바일 (768px 이하) */
+@media (max-width: 768px) {
+  .message-component {
+    width: 70px;
+    height: 70px;
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+/* 작은 모바일 (480px 이하) */
+@media (max-width: 480px) {
+  .message-component {
+    width: 70px;
+    height: 70px;
+    bottom: 16px;
+    right: 16px;
+  }
+}
