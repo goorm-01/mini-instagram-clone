@@ -8,7 +8,42 @@ class MessageComponent {
   constructor() {
     this.isOpen = false;  // 메시지 창 열림/닫힘 상태 관리
     this.isSearchMode = false;  // 검색 모드 상태 관리
+    this.storageKey = 'messageComponentState';
+    this.state = this.loadState();
     this.init();
+  }
+
+  loadState() {
+    try {
+      const raw = localStorage.getItem(this.storageKey);
+      return raw ? JSON.parse(raw) : {};
+    } catch (error) {
+      return {};
+    }
+  }
+
+  saveState(partialState) {
+    this.state = { ...this.state, ...partialState };
+    try {
+      localStorage.setItem(this.storageKey, JSON.stringify(this.state));
+    } catch (error) {
+      // localStorage 사용 불가 환경에서는 상태 저장 생략
+    }
+  }
+
+  updateSelectedUsersState(userId, username, action) {
+    const users = Array.isArray(this.state.selectedUsers) ? [...this.state.selectedUsers] : [];
+    const index = users.findIndex(user => user.id === userId);
+
+    if (action === 'add' && index === -1) {
+      users.push({ id: userId, username });
+    }
+
+    if (action === 'remove' && index !== -1) {
+      users.splice(index, 1);
+    }
+
+    this.saveState({ selectedUsers: users });
   }
 
   /*
@@ -21,11 +56,13 @@ class MessageComponent {
         this.loadSVGSprite();
         this.render();
         this.attachEvents();
+        this.restoreState();
       });
     } else {
       this.loadSVGSprite();
       this.render();
       this.attachEvents();
+      this.restoreState();
     }
   }
 
@@ -268,10 +305,11 @@ class MessageComponent {
   /*
     선택된 사용자 태그 추가
   */
-  addSelectedUser(userId, username) {
+  addSelectedUser(userId, username, options = {}) {
     const container = document.querySelector('.selected-users-container');
     const searchContent = document.querySelector('.search-content');
     if (!container) return;
+    if (container.querySelector(`.selected-user-tag[data-user-id="${userId}"]`)) return;
 
     const tagHTML = `
       <div class="selected-user-tag" data-user-id="${userId}">
@@ -289,6 +327,10 @@ class MessageComponent {
     
     // Chat 버튼 활성화
     this.updateChatButton();
+
+    if (!options.suppressStateUpdate) {
+      this.updateSelectedUsersState(userId, username, 'add');
+    }
 
     // X 버튼 클릭 이벤트
     const removeBtn = container.querySelector(`[data-user-id="${userId}"] .remove-user-btn`);
@@ -318,6 +360,9 @@ class MessageComponent {
     
     // Chat 버튼 상태 업데이트
     this.updateChatButton();
+
+    const username = tag?.querySelector('span')?.textContent || '';
+    this.updateSelectedUsersState(userId, username, 'remove');
   }
 
   /*
@@ -350,7 +395,7 @@ class MessageComponent {
   /*
     메시지 창 열기
    */
-  openMessage() {
+  openMessage(options = {}) {
     const component = document.querySelector('.message-component');
     const expanded = document.querySelector('.message-expanded');
     
@@ -365,6 +410,9 @@ class MessageComponent {
     expanded.classList.add('active');
     
     this.isOpen = true;
+    if (!options.suppressStateUpdate) {
+      this.saveState({ isOpen: true });
+    }
   }
 
   /*
@@ -378,6 +426,7 @@ class MessageComponent {
     expanded?.classList.remove('active');
     
     this.isOpen = false;
+    this.saveState({ isOpen: false });
     
     // 목록 화면으로 초기화
     if (this.isSearchMode) {
@@ -388,7 +437,7 @@ class MessageComponent {
   /*
     검색 화면으로 전환
    */
-  showSearchView() {
+  showSearchView(options = {}) {
     const listView = document.querySelector('.message-list-view');
     const searchView = document.querySelector('.message-search-view');
     
@@ -399,13 +448,16 @@ class MessageComponent {
     searchView?.classList.add('active');
     
     this.isSearchMode = true;
+    if (!options.suppressStateUpdate) {
+      this.saveState({ isSearchMode: true });
+    }
     console.log('검색 화면으로 전환');
   }
 
   /*
     목록 화면으로 전환
    */
-  showListView() {
+  showListView(options = {}) {
     const listView = document.querySelector('.message-list-view');
     const searchView = document.querySelector('.message-search-view');
     
@@ -416,6 +468,9 @@ class MessageComponent {
     listView?.classList.add('active');
     
     this.isSearchMode = false;
+    if (!options.suppressStateUpdate) {
+      this.saveState({ isSearchMode: false });
+    }
     console.log('목록 화면으로 전환');
   }
 
@@ -424,6 +479,30 @@ class MessageComponent {
    */
   render() {
     document.body.insertAdjacentHTML('beforeend', this.getHTML());
+  }
+
+  restoreState() {
+    const { isOpen, isSearchMode, selectedUsers } = this.state || {};
+
+    if (Array.isArray(selectedUsers)) {
+      selectedUsers.forEach(user => {
+        if (user?.id && user?.username) {
+          this.addSelectedUser(user.id, user.username, { suppressStateUpdate: true });
+          const profile = document.querySelector(`.recommend-profile[data-user-id="${user.id}"]`);
+          profile?.classList.add('selected');
+        }
+      });
+    }
+
+    if (isSearchMode) {
+      this.showSearchView({ suppressStateUpdate: true });
+    } else {
+      this.showListView({ suppressStateUpdate: true });
+    }
+
+    if (isOpen) {
+      this.openMessage({ suppressStateUpdate: true });
+    }
   }
 }
 

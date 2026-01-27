@@ -1,54 +1,3 @@
-:root {
-    --bg: #ffffff;
-    --panel-2: #0f1217;
-    --text: #0e0e0e;
-    --muted: #9aa4b2;
-    --line: rgba(255, 255, 255, .08);
-    --hover: rgba(255, 255, 255, .06);
-    --blue: #2f6bff;
-    --rooms-w: 360px;
-    --radius: 14px;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-html,
-body {
-    height: 100%;
-}
-
-body {
-    margin: 0;
-    display: grid;
-    grid-template-columns: 72px 360px 1fr;
-    font-family: ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-
-}
-
-/* A11Y */
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-/* LAYOUT */
-.app {
-    height: 100vh;
-    display: grid;
-    grid-template-columns: var(--nav-w) var(--rooms-w) 1fr;
-}
-
 /* 채팅방 목록 전체 섹션 */
 .roomsLayout {
     border-right: 1px solid var(--line);
@@ -62,17 +11,16 @@ body {
 /* dm바 상단 */
 .rooms__header {
     padding: 14px 0 10px;
-    border-bottom: 1px solid var(--line);
 }
 
-.rooms__title-row {
+.rooms__header-row {
     margin: 20px 0 10px 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-/* 현재 게정 사용자 */
+/* 현재 계정 사용자 */
 .rooms__user {
     border: 0;
     background: transparent;
@@ -86,10 +34,12 @@ body {
     padding: 8px 10px;
     border-radius: 10px;
 }
+
 .rooms__user:hover {
     background: var(--hover);
 }
-.rooms__user h2{
+
+.rooms__user h2 {
     margin: 0;
 }
 
@@ -98,12 +48,13 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 12px;
-    border: 1px solid var(--line);
+    border: transparent;
     background: transparent;
     display: grid;
     place-items: center;
     cursor: pointer;
 }
+
 .rooms__new:hover {
     background: var(--hover);
 }
@@ -113,16 +64,18 @@ body {
     height: 18px;
     opacity: .9;
 }
+
 /* 채팅방 검색창 */
 .rooms__search {
     width: 100%;
     height: 38px;
     border-radius: 999px;
     border: 1px solid var(--line);
-    background:rgb(243,245,247); 
-    color: rgb(168,168,168);;
+    background: rgb(243, 245, 247);
+    color: rgb(168, 168, 168);
     outline: none;
 }
+
 .rooms__search label {
     width: 100%;
     height: 100%;
@@ -131,7 +84,8 @@ body {
     padding: 0 20px 0 25px;
     gap: 15px;
 }
-.rooms__search input{
+
+.rooms__search input {
     width: 100%;
     font-size: 16px;
     appearance: textfield;
@@ -140,18 +94,20 @@ body {
     border-width: 0;
     border-style: none;
     border-color: transparent;
-    padding: 0px;
+    padding: 0;
 }
+
 .rooms__search input:focus {
-  outline: none;
-  box-shadow: none;
+    outline: none;
+    box-shadow: none;
 }
+
 .rooms__search input::placeholder {
     color: rgba(154, 164, 178, .8);
 }
 
-/* 채팅목록 */
-.rooms__title{
+/* 채팅 목록 상단 */
+.rooms__title-row {
     display: flex;
     width: 100%;
     align-items: center;
@@ -159,6 +115,17 @@ body {
     padding: 0 20px 0 20px;
 }
 
+.rooms__title-message {
+    font-weight: 700;
+}
+
+#message__request {
+    font-weight: 500;
+    font-size: 14;
+    color: #9aa4b2;
+}
+
+/* 메인 dm 리스트 */
 .rooms__list {
     list-style: none;
     margin: 0;
@@ -171,7 +138,6 @@ body {
     gap: 12px;
     align-items: center;
     padding: 10px 10px;
-    border-radius: 12px;
     cursor: pointer;
     position: relative;
 }
@@ -181,8 +147,7 @@ body {
 }
 
 .room.is-selected {
-    background: rgba(255, 255, 255, .06);
-    outline: 1px solid rgba(255, 255, 255, .08);
+    background: var(--hover);
 }
 
 .room__avatar {
@@ -196,25 +161,29 @@ body {
 .room__meta {
     min-width: 0;
     flex: 1;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
 }
 
 .room__name-row {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     min-width: 0;
 }
 
 .room__name {
-    font-weight: 700;
+    font-weight: 400;
     font-size: 14px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
-.room__dot,
-.room__time {
+.room__pinned{
+    color: rgb(106, 113, 122);
+}
+.room__dot, .room__time {
     color: var(--muted);
     font-size: 12px;
 }
@@ -234,79 +203,4 @@ body {
     border-radius: 999px;
     background: var(--blue);
     flex: 0 0 auto;
-}
-
-/* MAIN */
-.main {
-    background: var(--bg);
-    display: flex;
-    min-width: 0;
-}
-
-.empty {
-    margin: auto;
-    text-align: center;
-    width: min(420px, 92%);
-    padding: 24px;
-}
-
-.empty__icon {
-    width: 72px;
-    height: 72px;
-    border-radius: 999px;
-    border: 2px solid rgba(255, 255, 255, .25);
-    display: grid;
-    place-items: center;
-    margin: 0 auto 16px;
-}
-
-.empty__icon img {
-    width: 28px;
-    height: 28px;
-    opacity: .95;
-}
-
-.empty__title {
-    margin: 0 0 8px;
-    font-size: 22px;
-    font-weight: 800;
-}
-
-.empty__desc {
-    margin: 0 0 16px;
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.45;
-}
-
-.empty__cta {
-    border: 0;
-    background: var(--blue);
-    color: white;
-    font-weight: 800;
-    font-size: 14px;
-    padding: 10px 14px;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.empty__cta:hover {
-    filter: brightness(1.05);
-}
-
-/* RESPONSIVE */
-@media (max-width: 920px) {
-    :root {
-        --rooms-w: 320px;
-    }
-}
-
-@media (max-width: 760px) {
-    .app {
-        grid-template-columns: var(--nav-w) 1fr;
-    }
-
-    .main {
-        display: none;
-    }
 }
