@@ -12,6 +12,10 @@
   scroll-behavior: smooth;
 }
 
+#reels::-webkit-scrollbar {
+  display: none;
+}
+
 .reels-card {
   height: 100%;
   scroll-snap-align: start;
@@ -127,79 +131,64 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #fff;
+  width: 100%;
+  color: white;
   font-size: 13px;
-  margin-right: 5px;
 }
 
 .tags {
   display: flex;
   align-items: center;
-  background: #dbdbdb14;
-  gap: 6px;
+  gap: 4px;
   flex-shrink: 0;
-}
-
-.tag {
-  background: #dbdbdb14;
-  padding: 4px 8px;
-  border-radius: 999px;
-  font-size: 12px;
 }
 
 .bgm-wrapper {
   overflow: hidden;
-  white-space: nowrap;
-  max-width: 160px;
-  position: relative;
-  border-radius: 20px;
-  display: flex;
-  justify-content: flex-start;
-  margin-right: 5px;
+  flex: 1;
+  min-width: 0;
 }
 
 .bgm-text {
   display: inline-block;
+  white-space: nowrap;
+  will-change: transform;
 }
 
-.bgm {
-  display: flex;
-  justify-content: flex-start;
-  gap: 4px;
-  align-items: center;
-  background: #dbdbdb30;
-  border: 1px solid #ffffff0a;
-  border-radius: 20px;
-  height: 24px;
-  width: 300px;
-  text-align: left;
+.bgm-track {
+  display: inline-block;
+  white-space: nowrap;
 }
 
-.bgm-img {
-  margin-left: 12px;
+.bgm-track.animate {
+  animation: bgm-marquee linear infinite;
 }
 
-.description.collapsed {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+@keyframes bgm-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-1px * var(--marquee-distance, 0)));
+  }
 }
 
-.description.expanded {
+.description {
+  position: relative;
+  color: white;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.description .more {
   position: absolute;
-  bottom: 80px;
-  left: 16px;
-  right: 16px;
+  color: #aaa;
+  cursor: pointer;
+  white-space: nowrap;
+}
 
-  max-height: 50vh;
-  overflow-y: auto;
-
-  background: rgba(0, 0, 0, 0.6);
-  padding: 12px;
-  border-radius: 8px;
-
-  -webkit-line-clamp: unset;
+.hidden {
+  display: none;
 }
 
 .side-actions {
@@ -231,17 +220,4 @@
   border-radius: 8px;
   margin-bottom: 20px;
   background: var(--bg-primary);
-}
-
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-.bgm-text.marquee {
-  animation: marquee 8s linear infinite;
 }
