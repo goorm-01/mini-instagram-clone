@@ -42,6 +42,7 @@
   color: white;
   border: 0;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .play-btn:hover {
@@ -66,6 +67,7 @@
   border: 0;
   color: white;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .mute-btn:hover {
@@ -98,6 +100,7 @@
 
 .follow-btn {
   font-weight: 600;
+  cursor: pointer;
   height: 32px;
   width: auto;
   border-radius: 8px;
@@ -137,6 +140,7 @@
 .side-actions img {
   height: 24px;
   width: 24px;
+  cursor: pointer;
 }
 
 .side-action-btn {
