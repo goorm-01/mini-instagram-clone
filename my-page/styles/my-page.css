@@ -1,0 +1,327 @@
+:root {
+    --profile-bg-primary: #fff;
+    --profile-bg-seccondary: #efefef;
+    --profile-bg-hover: #e7eaee;
+    --profile-bg-highlight: rgb(243, 245, 247);
+    --profile-text-primary: #000;
+    --profile-border-color: #dbdbdb;
+    --active-icon: rgb(12, 16, 20);
+    --nonactive-icon: rgb(142, 142, 142);
+}
+
+
+/* 전역 margin, padding 설정 */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--profile-bg-primary);
+    color: var(--profile-text-primary);
+}
+
+.main-content {
+    margin-left: 72px;
+    padding: 30px 20px;
+}
+
+.profile-header {
+    display: flex;
+    gap: 30px;
+    padding: 20px 0;
+    margin-bottom: 44px;
+}
+
+.profile-image {
+    flex-shrink: 0;
+    width: 150px;
+    height: 150px;
+    border: 1px solid var(--profile-border-color);
+    border-radius: 50%;
+    margin: 0 50px;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-actions .username {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+
+/* 프로필 버튼 */
+
+.profile-info .profile-btn {
+    padding: 7px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--profile-bg-seccondary);
+    color: var(--profile-text-primary);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.profile-info .profile-btn:hover {
+    background: var(--profile-bg-hover);
+}
+
+
+/* 설정 버튼에 별개의 css */
+
+.profile-info .settings-btn {
+    padding: 8px;
+    background: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.profile-info .settings-btn:hover {
+    background: transparent;
+    transform: scale(1.04);
+}
+
+
+/* 프로필 상태 (게시물, 팔로워, 팔로잉) */
+
+.profile-status {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+}
+
+.profile-status li {
+    font-size: 16px;
+}
+
+.status-count {
+    font-weight: 600;
+}
+
+
+/* 프로필 소개문 */
+
+.profile-introduce {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+
+/* 하이라이트 섹션 */
+
+.highlights {
+    display: flex;
+    gap: 15px;
+    padding: 10px 0 44px;
+}
+
+.highlight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+
+/* 하이라이트 테두리 */
+
+.highlight-circle {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    border: 3px solid #dbdbdb;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fafafa;
+}
+
+.highlight-circle img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3.5px solid #fff;
+}
+
+
+/* 새 하이라이트 버튼 */
+
+.new-highlight {
+    background-color: transparent;
+}
+
+.new-highlight-icon {
+    color: #c7c7c7;
+    background: var(--profile-bg-highlight);
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    border: 3.5px solid var(--profile-bg-primary);
+}
+
+
+/* 하이라이트 제목 */
+
+.highlight-title {
+    font-size: 12px;
+    font-weight: 600;
+    max-width: 74px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* 프로필 네비게이션 */
+
+.profile-navs {
+    display: flex;
+    justify-content: center;
+    gap: 120px;
+    border-bottom: 1px solid var(--profile-border-color);
+}
+
+.profile-nav {
+    padding: 4px 16px;
+    background: transparent;
+    border: none;
+    color: var(--profile-nav-icon);
+    cursor: pointer;
+    margin-top: -1px;
+}
+
+.profile-nav.active {
+    border-bottom: 2px solid var(--active-icon);
+}
+
+
+/* 게시물 그리드 */
+
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+}
+
+.grid-item {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.grid-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+}
+
+.grid-item:hover::after {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.2s;
+}
+
+.grid-item:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.profile-header,
+.highlights,
+.profile-navs,
+.post-grid {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 900px;
+}
+
+.profile-status-mobile {
+    display: none;
+    justify-content: space-around;
+    border-top: 1px solid var(--profile-border-color);
+    padding-top: 12px;
+}
+
+.post-status-mobile,
+.follower-status-mobile,
+.following-status-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post-title-mobile,
+.follower-title-mobile,
+.following-title-mobile {
+    font-weight: 600;
+}
+
+.profile-status-mobile,
+.profile-introduce.mobile,
+.profile-btn-container.mobile {
+    display: none;
+}
+
+@media (max-width:767px) {
+    .main-content {
+        margin-left: 0;
+        padding: 0;
+    }
+    .profile-image {
+        height: 77px;
+        width: 77px;
+        margin: 12px;
+    }
+    .profile-status,
+    .profile-btn.pc,
+    .profile-introduce.pc {
+        display: none;
+    }
+    .profile-status-mobile,
+    .profile-introduce.mobile {
+        display: flex;
+    }
+    .profile-btn-container.mobile {
+        display: flex;
+        gap: 12px;
+    }
+    .profile-header {
+        margin-bottom: 0;
+    }
+    .profile-introduce.mobile {
+        padding: 0 10px;
+    }
+}
