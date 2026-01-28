@@ -34,7 +34,7 @@ class MessageComponent {
     - assets/icons.svg 파일을 가져와서 body 맨 앞에 숨김 처리로 삽입
    */
   loadSVGSprite() {
-    fetch('./assets/icons.svg')
+    fetch('/message-component/assets/icons.svg')
       .then(response => response.text())
       .then(data => {
         const div = document.createElement('div');
@@ -74,7 +74,7 @@ class MessageComponent {
           <div>${this.createIcon('icon-message', 'icon-message', 28, 28)}</div>
           <div class="message-title">메시지</div>
         </div>
-        <img class="profile-img" src="./assets/images/profile-img.png" alt="profile-img" />
+        <img class="profile-img" src="/message-component/assets/images/profile-img.png" alt="profile-img" />
       </div>
 
       <!-- 확장된 메시지 창 -->
@@ -96,7 +96,7 @@ class MessageComponent {
       <!-- 메시지 목록 -->
       <div class="message-body">
         <div class="message-items">
-          <img class="expanded-profile-img" src="./assets/images/profile-img.png" alt="profile-img" />
+          <img class="expanded-profile-img" src="/message-component/assets/images/profile-img.png" alt="profile-img" />
           <div class="expanded-profile-text">
             <div class="expanded-profile-text-top">goorm.co</div>
             <div class="expanded-profile-text-bottom">
@@ -106,7 +106,7 @@ class MessageComponent {
           </div>
         </div>
         <div class="message-items">
-          <img class="expanded-profile-img" src="./assets/images/profile-img.png" alt="profile-img" />
+          <img class="expanded-profile-img" src="/message-component/assets/images/profile-img.png" alt="profile-img" />
           <div class="expanded-profile-text">
             <div class="expanded-profile-text-top">goorm.co</div>
             <div class="expanded-profile-text-bottom">
@@ -163,7 +163,7 @@ class MessageComponent {
         <!-- 추천 프로필 1 -->
         <div class="recommend-profile" data-user-id="1">
           <div class="recommend-profile-left">
-            <img class="expanded-profile-img" src="./assets/images/profile-img.png" alt="profile-img" />
+            <img class="expanded-profile-img" src="/message-component/assets/images/profile-img.png" alt="profile-img" />
             <div class="recommend-profile-left-text">
               <div class="search-recommend-text">goorm.co</div>
               <div class="search-recommend-text-bottom">goorm.co</div>
@@ -177,7 +177,7 @@ class MessageComponent {
         <!-- 추천 프로필 2 -->
         <div class="recommend-profile" data-user-id="2">
           <div class="recommend-profile-left">
-            <img class="expanded-profile-img" src="./assets/images/profile-img.png" alt="profile-img" />
+            <img class="expanded-profile-img" src="/message-component/assets/images/profile-img.png" alt="profile-img" />
             <div class="recommend-profile-left-text">
               <div class="search-recommend-text">user_two</div>
               <div class="search-recommend-text-bottom">사용자2</div>
@@ -191,7 +191,7 @@ class MessageComponent {
         <!-- 추천 프로필 3 -->
         <div class="recommend-profile" data-user-id="3">
           <div class="recommend-profile-left">
-            <img class="expanded-profile-img" src="./assets/images/profile-img.png" alt="profile-img" />
+            <img class="expanded-profile-img" src="/message-component/assets/images/profile-img.png" alt="profile-img" />
             <div class="recommend-profile-left-text">
               <div class="search-recommend-text">coding_master</div>
               <div class="search-recommend-text-bottom">코딩마스터</div>
