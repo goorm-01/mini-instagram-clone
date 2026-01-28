@@ -1,0 +1,45 @@
+.story-container {
+  width: 930px;
+  height: 124px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: scroll;
+  padding: 8px 9px;
+}
+
+.story-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+  gap: 5px;
+  font-size: 12px;
+}
+
+.story-img {
+  width: 83px;
+  height: 83px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    45deg,
+    #feda75,
+    #fa7e1e,
+    #d62976,
+    #962fbf,
+    #4f5bd5
+  );
+  padding: 2px;
+  border-radius: 999px;
+  object-fit: cover;
+}
+
+img {
+  width: 74px;
+  height: 74px;
+  border-radius: 999px;
+  background-color: white;
+  padding: 3px;
+}
