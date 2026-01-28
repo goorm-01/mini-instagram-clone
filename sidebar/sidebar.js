@@ -3,9 +3,14 @@ const buttons = document.querySelectorAll('.btn-container .action-btn');
 const mainBtn = document.querySelector('.main-btn');
 const homeBtn = document.querySelector('.home-btn');
 
+const excludeBtns = ['search-btn', 'notification-btn', 'make-btn'];
+
 // 버튼 컨테이너 버튼 클릭 시
 buttons.forEach(btn => {
     btn.addEventListener('click', () => {
+        if (excludeBtns.some(cls => btn.classList.contains(cls))) {
+            return;
+        }
         // 모든 버튼에 active 제거
         buttons.forEach(b => b.classList.remove('active'));
         // 활성 버튼에만 active 추가
