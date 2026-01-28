@@ -19,13 +19,16 @@ window.addEventListener('DOMContentLoaded', () => {
   const rooms = document.querySelectorAll('.room');
   const emptyState = document.getElementById('empty-state');
   const chatRoom = document.getElementById('chat-room');
+  const chatHeaderAvatar = document.querySelector('.chat-header__avatar');
   const chatHeaderName = document.querySelector('.chat-header__name');
+  const chatHeaderUserId = document.querySelector('.chat-header__userId');
   const chatInput = document.getElementById('chat-input-field');
   const chatSendBtn = document.getElementById('chat-send-btn');
   const chatInputType = document.querySelector('.chat-inputType');
   const chatMessages = document.querySelector('.chat-messages');
   const storageKey = 'messageChatData';
   let activeRoomName = null;
+  let seedChatData = {};
 
   // 저장된 채팅 데이터 불러오기
   const loadChatData = () => {
@@ -46,13 +49,78 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // JSON(시드) 데이터 로드: 기본 메시지는 파일에서, 내 메시지는 localStorage에서 관리
+  const loadSeedData = () => {
+    return fetch('./messages.json')
+      .then(res => (res.ok ? res.json() : {}))
+      .catch(() => ({}));
+  };
+
+  // 시드 데이터에서 방 정보 추출(메시지/아이디)
+  const getSeedRoom = roomName => {
+    const roomData = seedChatData[roomName];
+    if (Array.isArray(roomData)) {
+      return { messages: roomData, userId: null };
+    }
+    if (roomData && typeof roomData === 'object') {
+      return {
+        messages: Array.isArray(roomData.messages) ? roomData.messages : [],
+        userId: roomData.userId || null,
+      };
+    }
+    return { messages: [], userId: null };
+  };
+
+  // 시드 메시지 + 로컬 메시지 합치기
+  const getMergedMessages = roomName => {
+    const seedMessages = getSeedRoom(roomName).messages;
+    const localData = loadChatData();
+    const localMessages = Array.isArray(localData[roomName]) ? localData[roomName] : [];
+    return [...seedMessages, ...localMessages];
+  };
+
+  // 방 목록의 미리보기(마지막 메시지) 갱신
+  const updateRoomPreviews = () => {
+    rooms.forEach(room => {
+      const nameEl = room.querySelector('.room__name');
+      const lastChatEl = room.querySelector('.room__lastChat');
+      if (!nameEl || !lastChatEl) return;
+      const roomName = nameEl.textContent;
+      const messages = getMergedMessages(roomName);
+      if (messages.length === 0) return;
+      const lastMessage = messages[messages.length - 1];
+      lastChatEl.textContent = lastMessage.text || '';
+    });
+  };
+
+  // 방 이름에 따라 상대 프로필 이미지 결정
+  const getRoomAvatarSrc = roomName => {
+    if (roomName === 'Groom님') return '../assets/images/profile-img.png';
+    return '../assets/images/avatar.png';
+  };
+
+  // 채팅 헤더(상단) 정보 갱신
+  const updateChatHeader = roomName => {
+    if (chatHeaderName) chatHeaderName.textContent = roomName;
+    if (chatHeaderAvatar) chatHeaderAvatar.src = getRoomAvatarSrc(roomName);
+    if (chatHeaderUserId) {
+      const seedUserId = getSeedRoom(roomName).userId;
+      chatHeaderUserId.textContent = seedUserId || '';
+    }
+  };
+
   // 현재 방 메시지 렌더링
-  const renderMessages = messages => {
+  const renderMessages = (messages, roomName) => {
     if (!chatMessages) return;
     chatMessages.innerHTML = '';
-    messages.forEach(message => {
+    messages.forEach((message, index) => {
       const item = document.createElement('div');
       const isMine = message.from === 'me';
+      const currentTime = typeof message.createdAt === 'number' ? message.createdAt : 0;
+      const nextMessage = messages[index + 1];
+      const nextTime = nextMessage && typeof nextMessage.createdAt === 'number' ? nextMessage.createdAt : 0;
+      const nextIsSameSender = nextMessage && nextMessage.from === message.from;
+      const isLastInMinuteGroup = !nextMessage || !nextIsSameSender || (nextTime - currentTime) > 60000;
       item.className = isMine ? 'message message--mine' : 'message';
       item.innerHTML = isMine
         ? `
@@ -61,7 +129,7 @@ window.addEventListener('DOMContentLoaded', () => {
           </div>
         `
         : `
-          <img class="message__avatar" src="../assets/images/avatar.png" alt="" />
+          <img class="message__avatar" src="${getRoomAvatarSrc(roomName)}" alt="" style="opacity: ${isLastInMinuteGroup ? '1' : '0'};" />
           <div class="message__content">
             <span class="message__text"></span>
           </div>
@@ -81,7 +149,8 @@ window.addEventListener('DOMContentLoaded', () => {
     roomMessages.push(nextMessage);
     data[activeRoomName] = roomMessages;
     saveChatData(data);
-    renderMessages(roomMessages);
+    renderMessages(getMergedMessages(activeRoomName), activeRoomName);
+    updateRoomPreviews();
   };
 
   // 방 선택 시 헤더/내용 갱신
@@ -93,16 +162,14 @@ window.addEventListener('DOMContentLoaded', () => {
       this.classList.add('is-selected');
       // 사용자 이름 가져오기
       const userName = this.querySelector('.room__name').textContent;
-      if (chatHeaderName) chatHeaderName.textContent = userName;
+      updateChatHeader(userName);
       activeRoomName = userName;
       // 빈 화면 숨기고 채팅방 보이기
       if (emptyState) emptyState.style.display = 'none';
       if (chatRoom) chatRoom.style.display = 'flex';
 
-      // 저장된 메시지 불러오기
-      const data = loadChatData();
-      const roomMessages = Array.isArray(data[userName]) ? data[userName] : [];
-      renderMessages(roomMessages);
+      // 시드 + 로컬 메시지 합쳐서 표시
+      renderMessages(getMergedMessages(userName), userName);
     });
   });
 
@@ -143,4 +210,13 @@ window.addEventListener('DOMContentLoaded', () => {
     // 초기 상태 반영
     toggleSendBtn();
   }
+
+  // 시드 데이터 먼저 불러오기
+  loadSeedData().then(data => {
+    seedChatData = data && typeof data === 'object' ? data : {};
+    if (activeRoomName) {
+      renderMessages(getMergedMessages(activeRoomName), activeRoomName);
+    }
+    updateRoomPreviews();
+  });
 });

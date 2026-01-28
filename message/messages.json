@@ -1,0 +1,27 @@
+{
+  "Groom님": {
+    "userId": "groom_",
+    "messages": [
+      {
+        "text": "안녕하세요! 처음 인사드려요.",
+        "from": "other",
+        "createdAt": 1700000000000
+      },
+      {
+        "text": "첨부 파일 확인 부탁해요.",
+        "from": "other",
+        "createdAt": 1700000060000
+      }
+    ]
+  },
+  "백구름님": {
+    "userId": "whitegroom",
+    "messages": [
+      {
+        "text": "머하니",
+        "from": "other",
+        "createdAt": 1700001000000
+      }
+    ]
+  }
+}

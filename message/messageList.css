@@ -112,7 +112,7 @@
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px 0 20px;
+    padding: 10px 20px 0 20px;
 }
 
 .rooms__title-message {

@@ -57,7 +57,7 @@
 .message {
     display: flex;
     gap: 12px;
-    margin-bottom: 16px;
+    margin-bottom: 5px;
     width: 100%;
 }
 
