@@ -1,0 +1,47 @@
+:root {
+    --bg: #ffffff;
+    --panel-2: #0f1217;
+    --text: #0e0e0e;
+    --muted: #9aa4b2;
+    --line: rgba(0, 0, 0, .15);
+    --hover: rgba(0, 0, 0, .08);
+    --blue: rgb(74, 93, 249);
+    --rooms-w: 400px;
+    --radius: 14px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    display: grid;
+    grid-template-columns: 72px 400px 1fr;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow: hidden;
+}
+
+
+/* 전체 레이아웃 */
+.app {
+    height: 100vh;
+    display: grid;
+}
+
+/* main */
+.main {
+    background: var(--bg);
+    display: flex;
+    min-width: 0;
+    height: 100vh;
+    min-height: 0;
+    overflow: hidden;
+}
