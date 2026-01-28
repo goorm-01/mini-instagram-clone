@@ -47,32 +47,15 @@ body .message-expanded {
     border: 0;
 }
 
-/* LAYOUT */
+/* 전체 레이아웃 */
 .app {
     height: 100vh;
     display: grid;
 }
 
-/* MAIN */
+/* main */
 .main {
     background: var(--bg);
     display: flex;
     min-width: 0;
-}
-
-/* RESPONSIVE */
-@media (max-width: 920px) {
-    :root {
-        --rooms-w: 320px;
-    }
-}
-
-@media (max-width: 760px) {
-    .app {
-        grid-template-columns: var(--nav-w) 1fr;
-    }
-
-    .main {
-        display: none;
-    }
 }

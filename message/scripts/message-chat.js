@@ -1,7 +1,6 @@
 // 채팅방 선택 및 입력 처리
 window.addEventListener('DOMContentLoaded', () => {
-  // 화면 요소 참조
-  const rooms = document.querySelectorAll('.room');
+  const getRooms = () => document.querySelectorAll('.room');
   const emptyState = document.getElementById('empty-state');
   const chatRoom = document.getElementById('chat-room');
   const chatHeaderAvatar = document.querySelector('.chat-header__avatar');
@@ -34,7 +33,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // JSON(시드) 데이터 로드: 기본 메시지는 파일에서, 내 메시지는 localStorage에서 관리
+  // JSON 데이터 로드: 기본 메시지는 파일에서, 내 메시지는 localStorage에서 관리
   const loadSeedData = () => {
     return fetch('./messages.json')
       .then(res => (res.ok ? res.json() : {}))
@@ -56,7 +55,7 @@ window.addEventListener('DOMContentLoaded', () => {
     return { messages: [], userId: null };
   };
 
-  // 시드 메시지 + 로컬 메시지 합치기
+  // 시드+로컬 메시지
   const getMergedMessages = roomName => {
     const seedMessages = getSeedRoom(roomName).messages;
     const localData = loadChatData();
@@ -66,7 +65,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // 방 목록의 미리보기(마지막 메시지) 갱신
   const updateRoomPreviews = () => {
-    rooms.forEach(room => {
+    getRooms().forEach(room => {
       const nameEl = room.querySelector('.room__name');
       const lastChatEl = room.querySelector('.room__lastChat');
       if (!nameEl || !lastChatEl) return;
@@ -80,7 +79,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // 방 이름에 따라 상대 프로필 이미지 결정
   const getRoomAvatarSrc = roomName => {
-    if (roomName === 'Groom님') return '../assets/images/profile-img.png';
+    const roomData = seedChatData && typeof seedChatData === 'object' ? seedChatData[roomName] : null;
+    const avatar = roomData && typeof roomData === 'object' ? roomData.avatar : '';
+    if (typeof avatar === 'string' && avatar.trim()) {
+      return avatar;
+    }
     return '../assets/images/avatar.png';
   };
 
@@ -138,25 +141,28 @@ window.addEventListener('DOMContentLoaded', () => {
     updateRoomPreviews();
   };
 
-  // 방 선택 시 헤더/내용 갱신
-  rooms.forEach(room => {
-    room.addEventListener('click', function () {
-      // 모든 room에서 is-selected 제거
-      rooms.forEach(r => r.classList.remove('is-selected'));
-      // 현재 room에 is-selected 추가
-      this.classList.add('is-selected');
-      // 사용자 이름 가져오기
-      const userName = this.querySelector('.room__name').textContent;
-      updateChatHeader(userName);
-      activeRoomName = userName;
-      // 빈 화면 숨기고 채팅방 보이기
-      if (emptyState) emptyState.style.display = 'none';
-      if (chatRoom) chatRoom.style.display = 'flex';
+  const bindRooms = () => {
+    const rooms = getRooms();
+    if (!rooms.length) return;
+    rooms.forEach(room => {
+      room.addEventListener('click', function () {
+        // 모든 room에서 is-selected 제거
+        rooms.forEach(r => r.classList.remove('is-selected'));
+        // 현재 room에 is-selected 추가
+        this.classList.add('is-selected');
+        // 사용자 이름 가져오기
+        const userName = this.querySelector('.room__name').textContent;
+        updateChatHeader(userName);
+        activeRoomName = userName;
+        // 빈 화면 숨기고 채팅방 보이기
+        if (emptyState) emptyState.style.display = 'none';
+        if (chatRoom) chatRoom.style.display = 'flex';
 
-      // 시드 + 로컬 메시지 합쳐서 표시
-      renderMessages(getMergedMessages(userName), userName);
+        // 시드+로컬 메시지  표시
+        renderMessages(getMergedMessages(userName), userName);
+      });
     });
-  });
+  };
 
   if (chatInput && chatSendBtn) {
     // 입력값에 따라 전송 버튼/아이콘 토글
@@ -169,28 +175,25 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    // 입력 중 실시간 반영
+    // 입력 중 실시간 반영 
     chatInput.addEventListener('input', toggleSendBtn);
-    // 엔터로 전송
-    chatInput.addEventListener('keydown', event => {
-      if (event.key === 'Enter') {
-        event.preventDefault();
-        const text = chatInput.value.trim();
-        if (!text) return;
-        appendMessage(text);
-        chatInput.value = '';
-        toggleSendBtn();
-      }
-    });
-
-    // 버튼 클릭으로 전송
-    chatSendBtn.addEventListener('click', () => {
+    const sendCurrentMessage = () => {
       const text = chatInput.value.trim();
       if (!text) return;
       appendMessage(text);
       chatInput.value = '';
       toggleSendBtn();
+    };
+
+    // 엔터로 전송
+    chatInput.addEventListener('keydown', event => {
+      if (event.key !== 'Enter') return;
+      event.preventDefault();
+      sendCurrentMessage();
     });
+
+    // 버튼 클릭으로 전송
+    chatSendBtn.addEventListener('click', sendCurrentMessage);
 
     // 초기 상태 반영
     toggleSendBtn();
@@ -203,5 +206,11 @@ window.addEventListener('DOMContentLoaded', () => {
       renderMessages(getMergedMessages(activeRoomName), activeRoomName);
     }
     updateRoomPreviews();
+    bindRooms();
+  });
+
+  window.addEventListener('rooms:rendered', () => {
+    updateRoomPreviews();
+    bindRooms();
   });
 });

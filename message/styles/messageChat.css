@@ -107,6 +107,11 @@
     border: 1px solid var(--line);
     border-radius: 999px;
 }
+
+.chat-input > svg {
+    flex: 0 0 auto;
+    display: block;
+}
 .chat-input input {
     flex: 1;
     padding: 10px 16px;

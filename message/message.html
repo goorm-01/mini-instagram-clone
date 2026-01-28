@@ -5,9 +5,10 @@
 
   <link rel="stylesheet" href="../message-component/components/messeage-component.css" />
   <link rel="stylesheet" href="../sidebar/sidebar.css" />
-  <link rel="stylesheet" href="messageLayout.css" />
-  <link rel="stylesheet" href="messageList.css" />
-  <link rel="stylesheet" href="messageChat.css" />
+  <link rel="stylesheet" href="styles/messageLayout.css" />
+  <link rel="stylesheet" href="styles/messageList.css" />
+  <link rel="stylesheet" href="styles/messageChat.css" />
+  <link rel="stylesheet" href="styles/responsive.css" />
 </head>
 
 <body>
@@ -48,15 +49,17 @@
       </div>
 
       <!--dm 검색 창-->
-      <div class="rooms__search">
-        <label>
-          <svg aria-label="검색" fill="currentColor" height="16" role="img" viewBox="0 0 24 24" width="16">
-            <title>검색</title>
-            <path d="M19 10.5A8.5 8.5 0 1 1 10.5 2a8.5 8.5 0 0 1 8.5 8.5Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-            <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"x1="16.511" x2="22" y1="16.511" y2="22" />
-          </svg>
-          <input type="search" placeholder="검색" />
-        </label>
+      <div style="padding: 0 20px 0 20px;">
+        <div class="rooms__search">
+          <label>
+            <svg aria-label="검색" fill="currentColor" height="16" role="img" viewBox="0 0 24 24" width="16">
+              <title>검색</title>
+              <path d="M19 10.5A8.5 8.5 0 1 1 10.5 2a8.5 8.5 0 0 1 8.5 8.5Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+              <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"x1="16.511" x2="22" y1="16.511" y2="22" />
+            </svg>
+            <input type="search" placeholder="검색" />
+          </label>
+        </div>
       </div>
 
       <!-- 메모 (구현 x) -->
@@ -73,40 +76,6 @@
       </div>
       <!-- dm 목록 -->
       <ul class="rooms__list">
-        <li class="room">
-          <img class="room__avatar" src="../assets/images/profile-img.png" alt="" />
-          <div class="room__meta">
-            <div class="room__name-row">
-              <span class="room__name">Groom님</span>
-              <span class="room__pinned">
-                <svg aria-label="상단 고정" class="x1lliihq x1n2onr6 x1roi4f4" fill="currentColor" height="12" role="img" viewBox="0 0 24 24" width="12">
-                  <title>상단 고정</title>
-                  <path d="m22.707 7.583-6.29-6.29a1 1 0 0 0-1.414 0 5.183 5.183 0 0 0-1.543 3.593L8.172 8.79a5.161 5.161 0 0 0-4.768 1.42 1 1 0 0 0 0 1.414l3.779 3.778-5.89 5.89a1 1 0 1 0 1.414 1.414l5.89-5.89 3.778 3.779a1 1 0 0 0 1.414 0 5.174 5.174 0 0 0 1.42-4.769l3.905-5.287a5.183 5.183 0 0 0 3.593-1.543 1 1 0 0 0 0-1.414Z" />
-                </svg>
-              </span>
-            </div>
-            <div class="room__preview">
-              <span class="room__lastChat">첨부 파일을 보냈습니다.</span>
-              <span class="room__dot">•</span>
-              <span class="room__time">20분</span>
-            </div>
-          </div>
-        </li>
-
-        <li class="room">
-          <img class="room__avatar" src="../assets/images/avatar.png" alt="" />
-          <div class="room__meta">
-            <div class="room__name-row">
-              <span class="room__name">백구름님</span>
-            </div>
-            <div class="room__preview">
-              <span class="room__lastChat">머하니</span>
-              <span class="room__dot">•</span>
-              <span class="room__time">2시간</span>
-            </div>
-          </div>
-          <span class="room__unread"></span>
-        </li>
       </ul>
     </div>
   </section>
@@ -208,8 +177,9 @@
     </div>
   </main>
 
-  <script src="message-page.js"></script>
-  <script src="message-chat.js"></script>
+  <script src="scripts/message-page.js"></script>
+  <script src="scripts/message-list.js"></script>
+  <script src="scripts/message-chat.js"></script>
   <script src="../sidebar/sidebar.js"></script>
   <script src="../message-component/components/message-component.js"></script>
 </body>

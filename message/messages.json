@@ -1,6 +1,7 @@
 {
   "Groom님": {
     "userId": "groom_",
+    "avatar": "../assets/images/profile-img.png",
     "messages": [
       {
         "text": "안녕하세요! 처음 인사드려요.",
@@ -21,6 +22,106 @@
         "text": "머하니",
         "from": "other",
         "createdAt": 1700001000000
+      }
+    ]
+  },
+  "김구름님": {
+    "userId": "kim_groom",
+    "messages": [
+      {
+        "text": "오늘 점심 어때요?",
+        "from": "other",
+        "createdAt": 1700001200000
+      }
+    ]
+  },
+  "이구름님": {
+    "userId": "lee_groom",
+    "messages": [
+      {
+        "text": "회의 시간 변경됐어요.",
+        "from": "other",
+        "createdAt": 1700001400000
+      }
+    ]
+  },
+  "박구름님": {
+    "userId": "park_groom",
+    "messages": [
+      {
+        "text": "파일 공유했어요 확인해줘요.",
+        "from": "other",
+        "createdAt": 1700001600000
+      }
+    ]
+  },
+  "최구름님": {
+    "userId": "choi_groom",
+    "messages": [
+      {
+        "text": "주말에 시간 돼요?",
+        "from": "other",
+        "createdAt": 1700001800000
+      }
+    ]
+  },
+  "정구름님": {
+    "userId": "jung_groom",
+    "messages": [
+      {
+        "text": "방금 도착했어요.",
+        "from": "other",
+        "createdAt": 1700002000000
+      }
+    ]
+  },
+  "강구름님": {
+    "userId": "kang_groom",
+    "messages": [
+      {
+        "text": "확인되면 답 주세요!",
+        "from": "other",
+        "createdAt": 1700002200000
+      }
+    ]
+  },
+  "조구름님": {
+    "userId": "jo_groom",
+    "messages": [
+      {
+        "text": "내일 일정 공유할게요.",
+        "from": "other",
+        "createdAt": 1700002400000
+      }
+    ]
+  },
+  "윤구름님": {
+    "userId": "yoon_groom",
+    "messages": [
+      {
+        "text": "사진 잘 받았어요!",
+        "from": "other",
+        "createdAt": 1700002600000
+      }
+    ]
+  },
+  "장구름님": {
+    "userId": "jang_groom",
+    "messages": [
+      {
+        "text": "잠깐 통화 가능해요?",
+        "from": "other",
+        "createdAt": 1700002800000
+      }
+    ]
+  },
+  "한구름님": {
+    "userId": "han_groom",
+    "messages": [
+      {
+        "text": "지금 어디에요?",
+        "from": "other",
+        "createdAt": 1700003000000
       }
     ]
   }

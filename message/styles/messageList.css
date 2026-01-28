@@ -5,16 +5,15 @@
     display: flex;
     flex-direction: column;
     min-width: 0;
-    padding: 0 20px 0 20px;
 }
 
 /* dm바 상단 */
 .rooms__header {
     padding: 14px 0 10px;
 }
-
 .rooms__header-row {
     margin: 20px 0 10px 0;
+    padding : 0 20px 0 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -34,11 +33,9 @@
     padding: 8px 10px;
     border-radius: 10px;
 }
-
 .rooms__user:hover {
     background: var(--hover);
 }
-
 .rooms__user h2 {
     margin: 0;
 }
@@ -54,11 +51,9 @@
     place-items: center;
     cursor: pointer;
 }
-
 .rooms__new:hover {
     background: var(--hover);
 }
-
 .rooms__new img {
     width: 18px;
     height: 18px;
@@ -75,7 +70,6 @@
     color: rgb(168, 168, 168);
     outline: none;
 }
-
 .rooms__search label {
     width: 100%;
     height: 100%;
@@ -84,7 +78,6 @@
     padding: 0 20px 0 25px;
     gap: 15px;
 }
-
 .rooms__search input {
     width: 100%;
     font-size: 16px;
@@ -96,12 +89,10 @@
     border-color: transparent;
     padding: 0;
 }
-
 .rooms__search input:focus {
     outline: none;
     box-shadow: none;
 }
-
 .rooms__search input::placeholder {
     color: rgba(154, 164, 178, .8);
 }
@@ -114,11 +105,9 @@
     justify-content: space-between;
     padding: 10px 20px 0 20px;
 }
-
 .rooms__title-message {
     font-weight: 700;
 }
-
 #message__request {
     font-weight: 500;
     font-size: 14;
@@ -129,8 +118,10 @@
 .rooms__list {
     list-style: none;
     margin: 0;
-    padding: 8px 6px;
-    overflow: auto;
+    padding: 8px 0;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .room {
