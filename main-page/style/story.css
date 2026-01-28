@@ -35,11 +35,3 @@
   border-radius: 999px;
   object-fit: cover;
 }
-
-img {
-  width: 74px;
-  height: 74px;
-  border-radius: 999px;
-  background-color: white;
-  padding: 3px;
-}
