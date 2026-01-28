@@ -212,6 +212,7 @@ body {
     color: var(--profile-nav-icon);
     cursor: pointer;
     margin-top: -1px;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .profile-nav.active {
