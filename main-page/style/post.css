@@ -1,3 +1,4 @@
+/* 전체 컨테이너 */
 .post-item {
   display: flex;
   flex-direction: column;
@@ -5,23 +6,27 @@
   width: 470px;
 }
 
+/* 헤더 */
 .post-header {
   display: flex;
   align-items: center;
   padding: 0px 10px;
 }
 
+/* 게시글 시간 */
 .post-time {
   font-size: 14px;
   color: gray;
 }
 
+/* 사용자 이름 */
 .post-user {
   font-weight: bold;
   font-size: 16px;
   padding-left: 5px;
 }
 
+/* 사용자 팔로우 버튼 */
 .post-follow {
   margin-left: auto;
   margin-right: 10px;
@@ -31,6 +36,7 @@
   cursor: pointer;
 }
 
+/* 사용자 이미지 */
 .post-user-img img {
   width: 32px;
   height: 32px;
@@ -40,18 +46,21 @@
   cursor: pointer;
 }
 
+/* 게시글 이미지 */
 .post-image img {
   width: 468px;
   object-fit: cover;
   border-radius: 5px;
 }
 
+/* 하단 */
 .post-bottom {
   display: flex;
   padding: 0px 10px;
   margin-top: 10px;
 }
 
+/* 좋아요, 댓글, 공유 */
 .post-likes,
 .post-comments,
 .post-share {
@@ -65,6 +74,7 @@
   cursor: pointer;
 }
 
+/* 게시글 저장 */
 .post-save {
   margin-left: auto;
   display: flex;
@@ -74,6 +84,7 @@
   cursor: pointer;
 }
 
+/* 게시글 설명 */
 .post-caption {
   padding: 0px 10px;
   margin-top: 10px;

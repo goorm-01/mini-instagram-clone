@@ -1,9 +1,12 @@
+/* 헤더 컨테이너 (기본 크기일땐 안보이게 display none을 처리합니다.)*/
 .header-container {
   display: none;
   position: fixed;
 }
 
+/* 모바일 환경에서 보이게 */
 @media (max-width: 767px) {
+  /* 헤더 컨테이너 */
   .header-container {
     display: inline;
     position: relative;
@@ -11,6 +14,7 @@
     padding: 10px 10px 0px 10px;
   }
 
+  /* 헤더 */
   .header {
     max-width: 707px;
     display: flex;
@@ -18,7 +22,7 @@
     align-items: center;
     padding: 0px 20px;
   }
-
+  /* 검색창 */
   .header-search {
     display: flex;
     align-items: center;
@@ -32,6 +36,7 @@
     font-size: 16px;
   }
 
+  /* 검색창과 하트의 wrapper */
   .header-wrapper {
     display: flex;
     align-items: center;

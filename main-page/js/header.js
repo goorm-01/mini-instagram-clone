@@ -1,5 +1,6 @@
-const header = document.querySelector(".header-container");
+const header = document.querySelector(".header-container"); // 헤더 컨테이너 불러오기
 
+// 헤더 HTML 삽입
 header.innerHTML = `
     <div class="header">
       <svg aria-label="Instagram"

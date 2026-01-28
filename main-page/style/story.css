@@ -1,3 +1,4 @@
+/* 전체 컨테이너 */
 .story-container {
   width: 970px;
   height: 124px;
@@ -8,6 +9,7 @@
   padding: 8px 0px;
 }
 
+/* 스토리 아이템 */
 .story-item {
   display: flex;
   flex-direction: column;
@@ -17,6 +19,7 @@
   font-size: 12px;
 }
 
+/* 스토리 이미지 */
 .story-img {
   width: 83px;
   height: 83px;
@@ -36,6 +39,7 @@
   object-fit: cover;
 }
 
+/* 모바일 환경 */
 @media (max-width: 767px) {
   .story-container {
     width: 100%;

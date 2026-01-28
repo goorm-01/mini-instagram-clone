@@ -1,6 +1,7 @@
-const userHoverImgs = document.querySelector(".post-user-img");
-const userHoverTag = document.querySelector(".user-hover");
-userHoverImgs.addEventListener("mouseover", (e) => {
+const userHoverImgs = document.querySelector(".post-user-img"); // 게시물 사용자 이미지 불러오기
+const userHoverTag = document.querySelector(".user-hover"); // 메인 페이지에서 호버가 됐을 때 불러올 html 속 태그 불러오기
+userHoverImgs.addEventListener("mouseover", (e) => { // 호버시 이벤트 리스너
+  // 메인 HTML에 있는 태그에 HTML 삽입
   userHoverTag.innerHTML = `
     <div class="hover-box-container">
       <div class="user-container">
@@ -70,6 +71,7 @@ userHoverImgs.addEventListener("mouseover", (e) => {
   `;
 });
 
+// 마우스가 나갈 때 이벤트 리스너
 userHoverImgs.addEventListener("mouseleave", (e) => {
   userHoverTag.innerHTML = "";
 });

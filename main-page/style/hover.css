@@ -1,3 +1,4 @@
+/* 전체 호버 박스 컨테이너 */
 .hover-box-container {
   position: fixed;
   transform: translate(-50%, -50%);
@@ -12,6 +13,7 @@
   flex-direction: column;
 }
 
+/* 사용자 정보 컨테이너 */
 .user-container {
   display: flex;
   align-items: center;
@@ -19,6 +21,7 @@
   padding: 10px 20px;
 }
 
+/* 호버 시 보일 사용자 정보 */
 .hover-user-info {
   display: flex;
   flex-direction: column;
@@ -26,11 +29,13 @@
   padding: 0px 20px;
 }
 
+/* 사용자 id */
 .hover-user-id {
   font-weight: bold;
   font-size: 18px;
 }
 
+/* 게시물 이미지 wrapper */
 .img-wrapper {
   display: flex;
   justify-content: center;
@@ -40,11 +45,13 @@
   margin-top: 10px;
 }
 
+/* 게시물 이미지 */
 .hover-post-img {
   width: 133px;
   height: 133px;
 }
 
+/* 사용자 게시물, 팔로워, 팔로잉 정보 */
 .user-follow {
   display: flex;
   justify-content: space-between;
@@ -52,6 +59,7 @@
   margin-top: 10px;
 }
 
+/* 게시물, 팔로워, 팔로잉 */
 .post-count,
 .following-count,
 .follower-count {
@@ -60,6 +68,7 @@
   align-items: center;
 }
 
+/* 게시물, 팔로워, 팔로잉 */
 .post-count p,
 .following-count p,
 .follower-count p {
@@ -67,10 +76,12 @@
   margin: 0px;
 }
 
+/* 사용자 게시물, 팔로워, 팔로잉 수 */
 .user-count {
   font-weight: bold;
 }
 
+/* 하단 버튼 컨테이너 */
 .hover-bottom {
   display: flex;
   gap: 10px;
@@ -78,6 +89,7 @@
   justify-content: center;
 }
 
+/* DM 보내기 창 */
 .hover-dm {
   background-color: #455fff;
   color: white;
@@ -92,6 +104,7 @@
   align-items: center;
 }
 
+/* 팔로잉 버튼 */
 .hover-following {
   background-color: #e5e3e3;
   color: #535353;
@@ -103,6 +116,7 @@
   cursor: pointer;
 }
 
+/* 모바일 환경 */
 @media (max-width: 767px) {
   .hover-box-container {
     position: fixed;
