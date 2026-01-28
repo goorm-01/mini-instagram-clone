@@ -1,11 +1,11 @@
 .story-container {
-  width: 930px;
+  width: 970px;
   height: 124px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  overflow-x: scroll;
-  padding: 8px 9px;
+  overflow-x: auto;
+  padding: 8px 0px;
 }
 
 .story-item {
@@ -34,4 +34,15 @@
   padding: 2px;
   border-radius: 999px;
   object-fit: cover;
+}
+
+@media (max-width: 767px) {
+  .story-container {
+    width: 100%;
+    max-width: 650px;
+    height: 124px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
 }
