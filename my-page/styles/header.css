@@ -1,0 +1,31 @@
+.header {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 0 16px;
+}
+
+.header-middle {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header-left,
+.header-right {
+    margin-top: 10px;
+}
+
+.header-left,
+.header-middle,
+.header-right {
+    cursor: pointer;
+}
+
+@media (max-width: 767px) {
+    .header {
+        display: flex;
+    }
+}
