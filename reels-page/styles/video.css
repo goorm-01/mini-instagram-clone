@@ -226,7 +226,6 @@
 .comment-container {
   position: absolute;
   top: 10%;
-  left: calc(100% + 4px);
   width: 340px;
   height: 60%;
   background: white;
@@ -252,12 +251,12 @@
   pointer-events: auto;
 }
 
-.comment-container .right-position {
+.comment-container.right-position {
   left: calc(100% + 4px);
   right: auto;
 }
 
-.comment-container .left-position {
+.comment-container.left-position {
   left: auto;
   right: calc(100% + 12px);
 }
@@ -396,11 +395,4 @@
 
 .input-container input:focus {
   outline: none;
-}
-
-@media (max-width: 1190px) {
-  .comment-container {
-    left: auto;
-    right: calc(100% - 8px);
-  }
 }
