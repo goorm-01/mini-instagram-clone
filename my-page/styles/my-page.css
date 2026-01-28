@@ -248,6 +248,60 @@ body {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
+
+/* grid의 사진 호버 시 댓글 수 표시 */
+
+.grid-item:hover .grid-item-lists {
+    opacity: 1;
+}
+
+
+/* 댓글 수 */
+
+.grid-item-lists {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    color: var(--profile-bg-primary);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    display: flex;
+}
+
+
+/* grid item 댓글 리스트 */
+
+.grid-item-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+/* grid item 댓글 텍스트 */
+
+.grid-item-message-text {
+    display: block;
+    font-size: 16px;
+}
+
+
+/* grid item 댓글 이모지 */
+
+.grid-item-message {
+    background-image: url(../assets/icons/ig-icons.png);
+    background-position: -382px -333px;
+    display: block;
+    margin: 0 7px 0 2px;
+    height: 19px;
+    width: 19px;
+}
+
 .grid-item img {
     width: 100%;
     height: 100%;
