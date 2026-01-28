@@ -118,3 +118,31 @@ document.addEventListener("click", (e) => {
     }
   });
 });
+
+/* ==========더보기 버튼========== */
+sideActions.forEach((sideAction) => {
+  const moreBtn = sideAction.querySelector(".more");
+  const moreWindow = sideAction.querySelector(".more-container");
+
+  // 열기
+  moreBtn.addEventListener("click", () => {
+    moreWindow.classList.toggle("open");
+  });
+});
+
+function closeMore(more) {
+  more.classList.remove("open");
+}
+
+/* 전역 클릭 리스너 추가(더보기창 닫기) */
+document.addEventListener("click", (e) => {
+  document.querySelectorAll(".more-container.open").forEach((more) => {
+    const clickedInsideMore = e.target.closest(".more-container");
+    const clickedMoreBtn = e.target.closest(".more");
+
+    // 더보기 창 밖 + 더보기 버튼 아님 -> 닫기
+    if (!clickedInsideMore && !clickedMoreBtn) {
+      closeMore(more);
+    }
+  });
+});
