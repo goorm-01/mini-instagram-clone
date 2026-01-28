@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+    <link rel="stylesheet" href="../message-component/components/messeage-component.css">
+    <link rel="stylesheet" href="../sidebar/sidebar.css" />
+    <link rel="stylesheet" href="explore-page.css">
+</head>
+<body>
+  <aside id="sidebar"></aside>
+
+  <div class="search">
+    <input type="search" class="search-input" placeholder="검색">
+  </div>
+
+  <div class="explore-container">
+    <div class="explore-grid" id="exploreGrid"></div>
+  </div>
+
+  <!-- 게시물, 릴스 누르면 실제 게시물 & 릴스를 모달로 띄움 -->
+  <div class="modal-overlay" id="modalOverlay">
+      <div class="modal-content">
+          <button class="close-btn" id="closeBtn">×</button>
+          <div class="modal-body" id="modalBody">
+          </div>
+      </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../message-component/components/message-component.js"></script>
+  <script src="./js/grid.js"></script>
+  <script src="./js/bottom-menu.js"></script>
+  <script src="/explore-page/js/explore-page.js"></script>
+
+  <!-- 실제 인스타그램 게시물을 가져오기 위한 인스타그램 임베드 js -->
+  <script async src="https://www.instagram.com/embed.js"></script>
+
+  <!-- sidebar 가져오는 js -->
+  <script>
+    fetch('../sidebar/sidebar.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('sidebar').innerHTML = html;
+      
+      const script = document.createElement('script');
+      script.src = '../sidebar/sidebar.js';
+      document.body.appendChild(script);
+    });
+  </script>
+
+  <!--  bottom-menu 페이지 설정 -->
+  <script>
+    // bottom-menu 초기화
+    new BottomMenu({
+      basePath: '/explore-page/assets/icon.svg',
+      avatarPath: '/explore-page/assets/images/avatar.png',
+      currentPage: 'explore' // 현재 페이지 설정 (탐색 탭이 기본적으로 활성화 되어있게 하기 위함)
+    });
+  </script>
+</body>
+</html>
