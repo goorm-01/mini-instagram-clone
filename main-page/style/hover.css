@@ -1,0 +1,104 @@
+.hover-box-container {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 45%;
+  height: 360px;
+  width: 404px;
+  background-color: white;
+  border-radius: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-container {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 10px 20px;
+}
+
+.hover-user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px 20px;
+}
+
+.hover-user-id {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  gap: 2px;
+  margin-top: 10px;
+}
+
+.hover-post-img {
+  width: 133px;
+  height: 133px;
+}
+
+.user-follow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 50px;
+  margin-top: 10px;
+}
+
+.post-count,
+.following-count,
+.follower-count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post-count p,
+.following-count p,
+.follower-count p {
+  font-size: 14px;
+  margin: 0px;
+}
+
+.user-count {
+  font-weight: bold;
+}
+
+.hover-bottom {
+  display: flex;
+  gap: 10px;
+  padding: 0px 15px;
+  justify-content: center;
+}
+
+.hover-dm {
+  background-color: #455fff;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  padding: 7px 45px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.hover-following {
+  background-color: #e5e3e3;
+  color: #535353;
+  font-size: 15px;
+  border: none;
+  border-radius: 7px;
+  padding: 7px 45px;
+  font-weight: bold;
+  cursor: pointer;
+}
