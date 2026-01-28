@@ -521,12 +521,22 @@
   }
 }
 
+/* 모바일 (1014px 이하) */
+@media (max-width: 1014px) {
+  .message-component {
+    width: 70px;
+    height: 70px;
+    bottom: 80px;
+    right: 20px;
+  }
+}
+
 /* 모바일 (768px 이하) */
 @media (max-width: 768px) {
   .message-component {
     width: 70px;
     height: 70px;
-    bottom: 20px;
+    bottom: 80px;
     right: 20px;
   }
 }
@@ -536,7 +546,7 @@
   .message-component {
     width: 70px;
     height: 70px;
-    bottom: 16px;
+    bottom: 80px;
     right: 16px;
   }
 }

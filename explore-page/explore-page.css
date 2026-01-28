@@ -1,0 +1,277 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #fff;
+}
+
+/* 검색 기본 : 숨김 */
+.search {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .search {
+    display: flex;
+    width: 95%;
+    margin: 0 auto;
+    padding: 15px 0px;
+    box-sizing: border-box;
+  }
+
+  .search-input {
+    background-color: #f2f5f7;
+    color: #0C1014;
+    border: none;
+    border-radius: 30px;
+    padding: 20px 24px;
+    font-size: 18px;
+    outline: none;
+  }
+}
+
+.explore-container {
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  /* 사이드바 숨기기 */
+  #sidebar {
+    display: none;
+  }
+
+  .explore-container {
+    max-width: 100%;
+    padding-bottom: 80px;
+  }
+}
+
+.explore-grid {
+    display: grid;
+    padding: 30px 20px 0px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+}
+
+.grid-item {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+/* 오른쪽 상단 아이콘 컨테이너 */
+.top-right-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  width: 45px;
+  height: 45px;
+  aspect-ratio: 1 / 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  z-index: 5;
+}
+
+/* SVG는 부모에 맞춰서 */
+.top-right-icon svg {
+  width: 70%;
+  height: 70%;
+  fill: currentColor;
+}
+
+/* 릴스가 세로로 2칸 차지 */
+.grid-item.large {
+    grid-row: span 2;
+    grid-column: span 1;
+    aspect-ratio: auto; /* 세로로 길게 */
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.grid-item:hover .overlay {
+    opacity: 1;
+}
+
+.stats {
+    display: flex;
+    gap: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.reel-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    z-index: 10;
+}
+
+.bottom-menu {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .bottom-menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: #ffffff;
+    border-top: 1px solid #dbdbdb;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 1000;
+  }
+
+  .bottom-menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #262626;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .bottom-menu-item:hover {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+
+  .bottom-menu-item.active {
+    color: #000000;
+  }
+
+  .bottom-menu-item svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    stroke: currentColor;
+    transition: all 0.2s ease;
+  }
+
+  .bottom-menu-item img {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    stroke: currentColor;
+    transition: all 0.2s ease;
+  }
+  
+  .bottom-menu-item.active svg {
+    fill: #000000;
+    transform: scale(1.1);
+  }
+}
+
+/* 모달 스타일 */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    z-index: 1001;
+}
+
+.close-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.modal-body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 인스타그램 임베드 스타일 조정 */
+.modal-body .instagram-media {
+    margin: 0 !important;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .explore-grid {
+      gap: 2px;
+  }
+}
