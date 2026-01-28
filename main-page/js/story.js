@@ -53,7 +53,7 @@ storyContainer.innerHTML = story // innerHTML을 통해 스토리 항목을 생�
   .map(
     (item) => `
     <div class="story-item">
-        <div class="story-img"><img style="width: 74px; height: 74px; border-radius: 999px; background-color: white; padding: 3px;" src="${item.img}"></div>
+        <div class="story-img"><img style="width: 74px; height: 74px; border-radius: 999px; background-color: white; padding: 3px; cursor: pointer;" src="${item.img}"></div>
         <div class="story-user">${item.user}</div>
     </div>
 
