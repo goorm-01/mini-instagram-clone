@@ -1,0 +1,99 @@
+:root {
+    --text-primary: #000;
+    --footer-text-primary: rgb(106, 113, 122);
+}
+
+.profile-footer-pc {
+    display: flex;
+    align-items: stretch;
+    box-sizing: border-box;
+    flex-direction: column;
+    vertical-align: baseline;
+    padding: 0 16px;
+    position: relative;
+    margin-bottom: 52px;
+}
+
+.profile-footer-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--footer-text-primary);
+    font-size: 12px;
+    font-weight: 400;
+    margin: 4px 0;
+    /* 화면 작아지면 자동 줄넘김 */
+    flex-wrap: wrap;
+}
+
+.profile-footer-pc-btn {
+    color: var(--footer-text-primary);
+    text-decoration: none;
+    padding: 4px 8px;
+}
+
+.profile-footer-pc-btn:hover {
+    text-decoration: underline;
+}
+
+.lang-btn:hover {
+    text-decoration: none;
+}
+
+.profile-footer-mobile {
+    display: none;
+}
+
+
+/* 기본: filled 아이콘 숨김 */
+
+.profile-footer-mobile .icon-filled {
+    display: none;
+}
+
+
+/* 활성 버튼: outline 숨기고 filled 표시 */
+
+.profile-footer-mobile .action-btn.active .icon-outline {
+    display: none;
+}
+
+.profile-footer-mobile .action-btn.active .icon-filled {
+    display: block;
+}
+
+.profile-footer-mobile .action-btn.active .profile-img {
+    border: 2px solid var(--text-primary);
+}
+
+@media(max-width:767px) {
+    /* 화면 일정 이상 작아지면 pc footer 제거 및 모바일 footer 활성화 */
+    .profile-footer-pc {
+        display: none;
+    }
+    .profile-footer-mobile {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--profile-bg-primary, #fff);
+        border-top: 1px solid var(--profile-border-color, #dbdbdb);
+        z-index: 100;
+    }
+    .profile-footer-btn-container-mobile {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+    }
+    .profile-footer-btn-container-mobile .action-btn {
+        justify-content: center;
+        padding: 12px;
+        margin: 0;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .profile-footer-btn-container-mobile .action-btn:hover {
+        background: none;
+    }
+}
